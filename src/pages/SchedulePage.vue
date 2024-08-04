@@ -10,6 +10,6 @@
 
 <script setup>
 defineOptions({
-  name: 'IndexPage'
+  name: 'SchedulePage'
 });
 </script>

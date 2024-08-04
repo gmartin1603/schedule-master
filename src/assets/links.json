@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Schedule",
+    "caption": "View schedule by week",
+    "icon": "calendar",
+    "link": ""
+  },
+  {
+    "title": "Postings",
+    "caption": "View overtime by week",
+    "icon": "clock",
+    "link": "postings"
+  },
+  {
+    "title": "Dashboard",
+    "caption": "View and manage platform users and settings",
+    "icon": "people",
+    "link": "dashboard"
+  },
+  {
+    "title": "Settings",
+    "caption": "Manage settings",
+    "icon": "settings",
+    "link": "settings"
+  }
+]
