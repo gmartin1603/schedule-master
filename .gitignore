@@ -34,3 +34,4 @@ yarn-error.log*
 
 # Project secrets
 /src/private
+.env

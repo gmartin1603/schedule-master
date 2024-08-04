@@ -1,8 +1,8 @@
 <template>
   <q-item
     clickable
-    tag="a"
-    :href="props.link"
+    v-ripple
+    :to="props.link"
   >
     <q-item-section
       v-if="props.icon"

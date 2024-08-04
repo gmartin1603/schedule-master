@@ -1,4 +1,5 @@
 /* eslint-env node */
+const DotEnv = require("dotenv");
 
 /*
  * This file runs in a Node context (it's NOT transpiled by Babel), so use only
@@ -18,7 +19,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: [],
+    boot: ["firebase"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -53,7 +54,9 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        ...DotEnv.config().parsed,
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
