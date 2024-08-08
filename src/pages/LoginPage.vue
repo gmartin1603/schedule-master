@@ -1,13 +1,13 @@
 <template>
   <q-page class="bg-image flex flex-center">
     <q-page-container class="full-width">
-      <q-card class="q-mx-md" style="max-width: 350px; margin: 0 auto;">
+      <q-card class="q-mx-md bg-primary" style="max-width: 350px; margin: 0 auto;">
         <q-card-section>
           <q-card class="q-pa-md">
-            <q-card-section class="flex flex-center">
+            <q-card-section class="flex flex-center q-mb-md">
               <q-img
                 :src="logo"
-                style="width: 100px; height: 100px; margin: 0 auto;"
+                style="height: 100px; margin: 0 auto;"
               />
             </q-card-section>
             <q-card-section>
@@ -61,15 +61,18 @@
 
 <script setup>
 import { ref, reactive, computed, defineComponent } from 'vue'
-import imageUrl from '../assets/BeanField.jpg'
-import logo from '../assets/logo.png'
+import imageUrl from '../assets/images/BeanField.jpg'
+import logo from '../assets/images/Logo-Cargill.png'
 import { useQuasar } from 'quasar';
+import { useRouter } from 'vue-router';
+import authService from 'src/services/authService'
 
 defineComponent({
   name: 'LoginPage',
 })
 
 const q = useQuasar()
+const router = useRouter()
 
 const state = reactive({
   email: '',
@@ -81,17 +84,26 @@ const state = reactive({
 
 const disabled = computed(() => !state.email || !state.password)
 
-const login = () => {
+const login = async () => {
   state.loading = true
-  setTimeout(() => {
+
+  const success = await authService.login(state.email, state.password);
+
+  if (!success) {
+    state.email = ''
+    state.password = ''
     q.notify({
       color: 'negative',
       icon: 'report_problem',
       message: 'Invalid email or password',
     })
     state.error = 'Invalid email or password'
-    state.loading = false
-  }, 1000)
+  } else {
+    state.error = ''
+    router.replace('/')
+  }
+
+  state.loading = false
 }
 
 const forgotPassword = () => {
@@ -118,7 +130,7 @@ const forgotPassword = () => {
 
 <style scoped>
   .bg-image {
-    background-image: url(../assets/BeanField.jpg);
+    background-image: url(../assets/images/BeanField.jpg);
     background-repeat: no-repeat;
   }
 </style>

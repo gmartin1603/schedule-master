@@ -1,14 +1,28 @@
 import { auth } from "boot/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
-export async function loginWithEmailPassword(email, password) {
-  try {
-    const user = await signInWithEmailAndPassword(auth, email, password);
-    // set current user context
-    console.log(user);
-    return true;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-}
+const authService = {
+  login: async (email, password) => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      // set current user context
+      console.log(user);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  },
+
+  logout: async () => {
+    try {
+      await signOut(auth);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  },
+};
+
+export default authService;

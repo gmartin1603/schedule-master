@@ -5,10 +5,10 @@ export const useUsersStore = defineStore("users", {
     users: [],
   }),
   getters: {
-    userById: (state) => (id) => state.users.find((user) => user.id === id),
-    usersByDept: (state) => (dept) =>
+    getById: (state) => (id) => state.users.find((user) => user.id === id),
+    getUsersByDept: (state) => (dept) =>
       state.users.filter((user) => user.dept === dept),
-    fetchAll: (state) => state.users,
+    getAllUsers: (state) => state.users,
   },
   actions: {
     setUsers(users) {

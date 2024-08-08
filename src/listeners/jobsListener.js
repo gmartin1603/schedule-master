@@ -22,7 +22,7 @@ const jobsListener = (dept) => {
           arr.push(doc.data());
         });
         // Update jobs in the store
-        console.log(arr);
+        // console.log(arr);
         jobsStore.merge(arr);
         console.log("Jobs Listener: COMPLETE");
         resolve(arr);
